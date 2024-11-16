@@ -4,7 +4,7 @@ Python script that organises your Obsidian notes (also supports text files) into
 
 - OpenAI (GPT-3.5-turbo)
 - Anthropic (Claude 3 Haiku)
-- Google (Gemini 1.5 Flash)
+- Gemini (Gemini 1.5 Flash)
 
 ## Requirements
 
@@ -12,7 +12,7 @@ Python script that organises your Obsidian notes (also supports text files) into
 - API keys for your chosen LLM provider(s):
   - OpenAI API key
   - Anthropic API key
-  - Google API key
+  - Gemini API key
 
 ## Installation
 
@@ -25,7 +25,7 @@ Python script that organises your Obsidian notes (also supports text files) into
    ```
    OPENAI_API_KEY=your_openai_api_key
    ANTHROPIC_API_KEY=your_anthropic_api_key
-   GOOGLE_API_KEY=your_google_api_key
+   GEMINI_API_KEY=your_Gemini_api_key
    ```
 
 ## Usage
