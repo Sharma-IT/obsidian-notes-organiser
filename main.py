@@ -183,7 +183,7 @@ def analyse_content(filename: str, content: str, existing_folders: List[str], pr
     category = providers[provider](filename, key_content, existing_folders)
     return clean_folder_name(category)
 
-def organise_files(directory: str, provider: LLMProvider = "openai"):
+def organise_files(directory: str, provider: LLMProvider = "openai", dry_run: bool = False):
     """Organise files into folders based on LLM analysis."""
     print("\nScanning existing folders...")
     existing_folders = get_existing_folders(directory)
@@ -207,16 +207,18 @@ def organise_files(directory: str, provider: LLMProvider = "openai"):
             folder_path = os.path.join(directory, folder_name)
             
             if not os.path.exists(folder_path):
-                os.makedirs(folder_path)
-                print(f"Created new folder: {folder_name}")
+                if not dry_run:
+                    os.makedirs(folder_path)
+                print(f"{'[DRY RUN] Would create' if dry_run else 'Created'} new folder: {folder_name}")
             
             source = os.path.join(directory, file)
             destination = os.path.join(folder_path, file)
             
             # Check if we're actually moving to a different location
             if os.path.dirname(source) != os.path.dirname(destination):
-                shutil.move(source, destination)
-                print(f"Moved '{file}' to '{folder_name}/'")
+                if not dry_run:
+                    shutil.move(source, destination)
+                print(f"{'[DRY RUN] Would move' if dry_run else 'Moved'} '{file}' to '{folder_name}/'")
             else:
                 print(f"'{file}' is already in the correct folder")
             
@@ -271,7 +273,7 @@ if __name__ == '__main__':
         print("Dry run mode: No files will be moved\n")
     
     try:
-        organise_files(notes_directory, args.provider)
+        organise_files(notes_directory, args.provider, args.dry_run)
         print('\nNotes organisation completed!')
     except Exception as e:
         print(f"\nError: {str(e)}")
