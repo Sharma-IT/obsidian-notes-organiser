@@ -25,7 +25,7 @@ Python script that organises your Obsidian notes (also supports text files) into
    ```
    OPENAI_API_KEY=your_openai_api_key
    ANTHROPIC_API_KEY=your_anthropic_api_key
-   GOOGLE_API_KEY=your_google_api_key
+   GEMINI_API_KEY=your_gemini_api_key
    ```
 
 ## Usage
@@ -48,19 +48,19 @@ options:
 
 1. Basic usage (will prompt for directory and provider):
    ```bash
-   python main.py
+   python3 main.py
    ```
 
 2. Specify directory and provider:
    ```bash
-   python main.py -d /path/to/notes -p gemini
+   python3 main.py -d /path/to/notes -p gemini
    ```
 
 3. Dry run with any provider:
    ```bash
-   python main.py -d /path/to/notes -p claude --dry-run
-   python main.py -d /path/to/notes -p gemini --dry-run
-   python main.py -d /path/to/notes --dry-run  # Uses default OpenAI
+   python3 main.py -d /path/to/notes -p claude --dry-run
+   python3 main.py -d /path/to/notes -p gemini --dry-run
+   python3 main.py -d /path/to/notes -p openai --dry-run
    ```
 
 The script will analyse your notes and organise them into folders based on their content. Each note will be moved to a category folder suggested by the chosen LLM.
